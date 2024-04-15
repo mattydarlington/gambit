@@ -337,8 +337,15 @@ class Game:
         return g
 
     @classmethod
-    def to_arrays():
-        return False
+    """ Comments here
+    """
+    def to_arrays(cls, game): # numpy arrays? -> array:
+        n_players = len(game.players)
+        arrays = []
+        for i in range(n_players):
+            arrays.append(game.players[i].strategies)
+        return arrays
+        
 
     @classmethod
     def from_dict(cls, payoffs, title: str = "Untitled strategic game") -> Game:

@@ -338,32 +338,39 @@ class Game:
 
     @classmethod
     def to_arrays(cls, game): # numpy arrays? -> array:
-        """ Comments here
+        """ Create a list of payoffs for a given game
         
-        Can access outcome by game[strat, strat][player]
-        Want to iterate over all of this
-        i.e. need to account for n players
-        use itertools package to make list of all strategies?
+        Performs the inverse of the to_arrays function. For a given
+        Game returns a list of numpy arrays with the payoff for 
+        each player. Order of players is consistent with the order
+        of players in the Game object.
         
+        ----------
+        game: Game
+            The game to convert to arrays
+        
+        Returns
+        -------
+        arrays : list-like of array-like
+            The payoff matrices for the players.
+
+        See Also
+        --------
+        from_arrays : Create game from list-like of array-like
         """
         n_players = len(game.players)
-        
         strategies = []
         for i in range(n_players):
             strategies.append(game.players[i].strategies)
-        
         actions = np.zeros(n_players, dtype = int)
         for i in range(n_players):
             actions[i] = len(strategies[i])
-            
         arrays = []
-            
         for i in range(n_players):
             payoff_player = []
             for x in itertools.product(*strategies):
                 payoff_player.append(game[x][game.players[i]])
             arrays.append(np.reshape(np.array(payoff_player), actions))
-        
         return arrays
         
 

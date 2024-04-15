@@ -13,6 +13,14 @@ def test_from_arrays():
     assert len(game.players[1].strategies) == 2
 
 
+def test_to_arrays():
+    m = np.array([[8, 2], [10, 5]])
+    game = gbt.Game.from_arrays(m, m.transpose())
+    m1, m2 = gbt.Game.to_arrays(game)
+    assert np.array_equal(m1, m)
+    assert np.array_equal(m2.transpose(), m)
+
+
 def test_from_dict():
     m = np.array([[8, 2], [10, 5]])
     game = gbt.Game.from_dict({"a": m, "b": m.transpose()})

@@ -323,6 +323,7 @@ class Game:
         See Also
         --------
         from_dict : Create strategic game and set player labels
+        to_arrays : Create a list of payoffs arrays for a given game
         """
         g = cython.declare(Game)
         arrays = [np.array(a) for a in arrays]
@@ -335,6 +336,39 @@ class Game:
                 g[profile][player] = array[profile]
         g.title = title
         return g
+
+    @classmethod
+    def to_arrays(cls, game) -> list:
+        """ Create a list of payoffs arrays for a given `game`.
+
+        Performs the inverse of the to_arrays function. For a given
+        `game` returns a list of numpy arrays with the payoff for
+        each player. Order of players is consistent with the order
+        of players in the `game`.
+
+        ----------
+        game: Game
+            The strategic game to convert to arrays.
+
+        Returns
+        -------
+        arrays : array-like of array-like
+            The payoff matrices for the players.
+
+        See Also
+        --------
+        from_arrays : Create game from list-like of array-like
+        """
+        n_players = len(game.players)
+        strategies = [game.players[i].strategies for i in range(n_players)]
+        actions = [len(strategies[i]) for i in range(n_players)]
+        arrays = []
+        for i in range(n_players):
+            payoff_player = []
+            for x in itertools.product(*strategies):
+                payoff_player.append(game[x][game.players[i]])
+            arrays.append(np.reshape(np.array(payoff_player), actions))
+        return arrays
 
     @classmethod
     def from_dict(cls, payoffs, title: str = "Untitled strategic game") -> Game:

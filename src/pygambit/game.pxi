@@ -337,9 +337,9 @@ class Game:
         return g
 
     @classmethod
+    def to_arrays(cls, game): # numpy arrays? -> array:
     """ Comments here
     """
-    def to_arrays(cls, game): # numpy arrays? -> array:
         n_players = len(game.players)
         arrays = []
         for i in range(n_players):

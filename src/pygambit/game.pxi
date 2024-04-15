@@ -338,8 +338,8 @@ class Game:
 
     @classmethod
     def to_arrays(cls, game): # numpy arrays? -> array:
-    """ Comments here
-    """
+        """ Comments here
+        """
         n_players = len(game.players)
         arrays = []
         for i in range(n_players):

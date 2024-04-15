@@ -337,6 +337,10 @@ class Game:
         return g
 
     @classmethod
+    def to_arrays():
+        return False
+
+    @classmethod
     def from_dict(cls, payoffs, title: str = "Untitled strategic game") -> Game:
         """Create a new ``Game`` with a strategic representation.
 

@@ -337,18 +337,18 @@ class Game:
         return g
 
     @classmethod
-    def to_arrays(cls, game): # numpy arrays? -> array:
+    def to_arrays(cls, game):
         """ Create a list of payoffs for a given game
-        
+
         Performs the inverse of the to_arrays function. For a given
-        Game returns a list of numpy arrays with the payoff for 
+        Game returns a list of numpy arrays with the payoff for
         each player. Order of players is consistent with the order
         of players in the Game object.
-        
+
         ----------
         game: Game
             The game to convert to arrays
-        
+
         Returns
         -------
         arrays : list-like of array-like
@@ -372,7 +372,6 @@ class Game:
                 payoff_player.append(game[x][game.players[i]])
             arrays.append(np.reshape(np.array(payoff_player), actions))
         return arrays
-        
 
     @classmethod
     def from_dict(cls, payoffs, title: str = "Untitled strategic game") -> Game:

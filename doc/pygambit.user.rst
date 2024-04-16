@@ -181,7 +181,8 @@ payoff is 5:
 The arrays passed to :py:meth:`.Game.from_arrays` are all indexed in the same sense, that is,
 the top level index is the choice of the first player, the second level index of the second player,
 and so on.  Therefore, to create a two-player symmetric game, as in this example, the payoff matrix
-for the second player is transposed before passing to :py:meth:`.Game.from_arrays`.
+for the second player is transposed before passing to :py:meth:`.Game.from_arrays`. The payoff matrix
+for each player can be recovered from the game by the inverse function :py:meth:`.Game.to_arrays`.
 
 
 .. _pygambit.user.numbers:
